@@ -8,4 +8,5 @@ import com.eduhub.model.ShareContent;
 public interface ShareContentService extends GenericService<Long, ShareContent> {
 
 	List<ShareContent> getAllTopicsByCollegesById(Map<String, Object> data);
+	public List<User> getAllUsersByTopicId(Long topicId);
 }

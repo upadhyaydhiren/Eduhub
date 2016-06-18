@@ -35,4 +35,8 @@ public class ShareContentServiceImpl extends
 			Map<String, Object> data) {
 		return sharedContentDao.getAllTopicsByCollegesById(data);
 	}
+	@Override
+	public List<User> getAllUsersByTopicId(Long topicId){
+		return sharedContentDao.getAllUsersByTopicId(topocId);
+	}
 }
