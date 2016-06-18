@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type='text/javascript'
+	src='https://api.stackexchange.com/js/2.0/all.js'></script>
+<script type='text/javascript'>
+	// For simplicity, we're using jQuery for some things
+	//   However, the library has no jQuery dependency
+	$(function() {
+		// Initialize library
+		SE.init({
+			// Parameters obtained by registering an app, these are specific to the SE
+			//   documentation site
+			clientId : 7349,
+			key : '7vefr96v0CVdajRSCXy3pA((',
+			// Used for cross domain communication, it will be validated
+			channelUrl : 'http://localhost',
+			// Called when all initialization is finished
+			complete : function(data) {
+				//$('#login-button').removeAttr('disabled').text(
+					//	'Run Example With Version ' + data.version);
+			}
+		});
+
+		// Attach click handler to login button
+		$('#login-button').click(
+				function() {
+					alert("test");
+					// Make the authentication call, note that being in an onclick handler
+					//   is important; most browsers will hide windows opened without a
+					//   'click blessing'
+					SE.authenticate({
+						success : function(data) {
+							alert('User Authorized with account id = '
+									+ data.networkUsers[0].account_id
+									+ ', got access token = '
+									+ data.accessToken);
+							//location.href ='/login/'+data.accessToken;
+						},
+						error : function(data) {
+							alert('An error occurred:\n' + data.errorName
+									+ '\n' + data.errorMessage);
+						},
+						networkUsers : true
+					});
+				});
+	});
+</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button id="login-button">Login</button>
+</body>
+</html>

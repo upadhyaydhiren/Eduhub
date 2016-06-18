@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eduhub</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+	
+</script>
+<script type="/js/index.js"></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						alert("test");
+						$
+								.ajax({
+									url : '/category',
+
+									error : function(xhr) {
+										console.log(xhr);
+									},
+
+									success : function(data) {
+										$(data)
+												.each(
+														function(index) {
+															var str = '<div class="thumbnailsetting"><a href="/getontributerbytopicsid/"'+$(this)[index].name+'> </br><center>'
+																	+ $(this)[index].name;
+															+'</center></a></div>'
+															$("#topics")
+																	.append(str);
+														});
+									},
+									type : 'GET'
+								});
+					});
+</script>
+<style>
+.panel-default>.panel-heading {
+	background-color: #78909c;
+	color: black;
+}
+
+.thumbnailsetting {
+	width: 175px;
+	height: 200px;
+	overflow: hidden;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.thumbnail {
+	height: 175px;
+	width: 175px;
+	border-radius: 7px;
+}
+
+.thumbnailtextcolor {
+	color: #4169E1;
+}
+</style>
+</head>
+<body>
+
+	<!-- header -->
+	<div
+		style="height: 70px; background-color: #404040; color: white !important; text-align: right; padding-right: 40px; padding-top: 20px">
+
+		<!-- Trigger the modal with a button -->
+		<button type="button" class="btn btn-default btn-md" id="loginBtn">Login/SignUp</button>
+	</div>
+	<!-- body -->
+	<div>
+		<!-- Panel for topics -->
+		<div class="container" style="padding-top: 2em">
+			<div class="panel panel-default">
+				<div class="panel-heading">Trending Topics</div>
+				<div class="panel-body">
+					<div class="row">
+
+						<div class="col-xs-500" id="topics"></div>
+					</div>
+
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Trending Institutes</div>
+				<div class="panel-body">Panel Content</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Trending Questions</div>
+				<div class="panel-body">Panel Content</div>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<!--<div
+		style="height: 200px; background-color: #404040; color: white !important; padding-right: 40px; padding-top: 20px"></div>-->
+
+</body>
+</html>
