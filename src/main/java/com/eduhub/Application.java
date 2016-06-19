@@ -28,7 +28,7 @@ public class Application {
 
 	@RequestMapping("/")
 	public String Login() {
-		return "cover.html";
+		return "views/writecontent.html";
 	}
 
 	// @RequestMapping("login")

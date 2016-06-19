@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Eduhub|Write Content</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/views/bootstrap.min.css">
+<script src="/views/jquery-1.8.3.min.js"></script>
+<script src="/views/bootstrap.min.js"></script>
+<script src="/views/angular.min.js"></script>
+<script src="/views/ui-bootstrap-tpls-0.13.0.min.js"></script>
+<script type="text/javascript" src="/views/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="/views/tinymce.min.js"></script>
+<script src="/views/controller.js"></script>
+<style>
+body {
+	padding: 10px;
+}
+</style>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						tinymce
+								.init({
+									selector : 'textarea',
+									height : 200,
+									theme : 'modern',
+									plugins : [
+											'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+											'searchreplace wordcount visualblocks visualchars code fullscreen',
+											'insertdatetime media nonbreaking save table contextmenu directionality',
+											'emoticons template paste textcolor colorpicker textpattern imagetools' ],
+									toolbar1 : 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+									toolbar2 : 'print preview media | forecolor backcolor emoticons',
+									image_advtab : true,
+									templates : [ {
+										title : 'Test template 1',
+										content : 'Test 1'
+									}, {
+										title : 'Test template 2',
+										content : 'Test 2'
+									} ],
+									content_css : [
+											'//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+											'//www.tinymce.com/css/codepen.min.css' ]
+								});
+					});
+</script>
+</head>
+<body>
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			data-ng-click="$modalInstance.dismiss('close')" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title" id="myModalLabel">
+			<b>Write Content</b>
+		</h4>
+	</div>
+	<div class="modal-body">
+		<table>
+			<tr>
+				<td style="text-align: center">Select Category:</td>
+				<td><div class="btn-group selcondcss dropdown" dropdown>
+						<button type="button" data-toggle="tooltip"
+							class="btn btn-info dropdown-toggle btn-xs"
+							data-ng-click="getValueTypes()" dropdown-toggle>+</button>
+						<ul class="dropdown-menu" role="menu" dropdown-menu>
+							<li data-ng-model="valuetype" data-ng-repeat="type in valuetype"
+								data-ng-click="setKeyFieldValueType(type,keyDefinition)"><a>{{type}}</a></li>
+						</ul>
+					</div></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Select Topic:</td>
+				<td><div class="btn-group selcondcss dropdown" dropdown>
+						<button type="button" data-toggle="tooltip" title="Add Operator"
+							class="btn btn-info dropdown-toggle btn-xs"
+							data-ng-click="getOperators()" dropdown-toggle>+</button>
+						<ul class="dropdown-menu" role="menu" dropdown-menu>
+							<li data-ng-model="val" data-ng-repeat="(op,val) in operators"
+								data-ng-click="addOperator(keyDefinition.operator, val)"><a>{{val.operatorValue}}</a></li>
+						</ul>
+					</div></td>
+				<td><table>
+						<tr data-ng-repeat="op in keyDefinition.operator">
+							<td>
+							<td><a href
+								data-ng-click="keyDefinition.operator.splice($index,1)"
+								class="close">&times;</a><label> </label></td>
+						</tr>
+					</table></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td><div class=container>
+						<textarea></textarea>
+					</div></td>
+			</tr>
+		</table>
+
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-warning" data-dismiss="modal"
+			data-ng-click="close()">Close</button>
+		<button class="btn btn-primary"
+			data-ng-click="save(data,'api/alertcount')" class="data-ng-hide">Upload</button>
+	</div>
+</body>
+</html>

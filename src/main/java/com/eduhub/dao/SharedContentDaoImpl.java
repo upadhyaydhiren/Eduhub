@@ -65,12 +65,15 @@ public class SharedContentDaoImpl extends GenericDaoImpl<Long, ShareContent>
 
 		return null;
 	}
-	public List<User> getAllUsersByTopicId(Long topicId){
-		List<User> userList=new ArrayList<User>();
-		Criteria criteria = getSession().createCriteria(SharedContent.class);
-		List<SharedContent> sharedContentListByTopic=criteria.add(Restrictions.eq("sharedContentTopics.id",topicId));
-		if(null!=sharedContentListByTopic){
-			for(int i=0;i<sharedContentListByTopic.size();i++){
+
+	public List<User> getAllUsersByTopicId(Long topicId) {
+		List<User> userList = new ArrayList<User>();
+		Criteria criteria = getSession().createCriteria(ShareContent.class);
+		@SuppressWarnings("unchecked")
+		List<ShareContent> sharedContentListByTopic = criteria.add(
+				Restrictions.eq("sharedContentTopics.id", topicId)).list();
+		if (null != sharedContentListByTopic) {
+			for (int i = 0; i < sharedContentListByTopic.size(); i++) {
 				userList.add(sharedContentListByTopic.get(i).getUser());
 			}
 		}

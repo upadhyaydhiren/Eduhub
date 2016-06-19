@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eduhub.dao.GenericDao;
 import com.eduhub.dao.SharedContentDao;
 import com.eduhub.model.ShareContent;
+import com.eduhub.model.User;
 
 @Service
 @Transactional
@@ -35,8 +36,9 @@ public class ShareContentServiceImpl extends
 			Map<String, Object> data) {
 		return sharedContentDao.getAllTopicsByCollegesById(data);
 	}
+
 	@Override
-	public List<User> getAllUsersByTopicId(Long topicId){
-		return sharedContentDao.getAllUsersByTopicId(topocId);
+	public List<User> getAllUsersByTopicId(Long topicId) {
+		return sharedContentDao.getAllUsersByTopicId(topicId);
 	}
 }

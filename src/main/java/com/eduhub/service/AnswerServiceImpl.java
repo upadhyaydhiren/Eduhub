@@ -31,6 +31,6 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer>
 
 	@Override
 	public List<Answer> getAllAnswerById(Long questionId) {
-		return null;
+		return answerDao.getAllAnswerById(questionId);
 	}
 }

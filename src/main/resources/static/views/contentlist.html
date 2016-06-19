@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="bootstrap.min.css">
+<script src="jquery-1.8.3.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="angular.min.js"></script>
+<script src="ui-bootstrap-tpls-0.13.0.min.js"></script>
+<style>
+.partition {
+	position: absolute;
+	top: 50px;
+	left: 200px;
+	border-width: 3px;
+	border-color: black;
+}
+
+.positionfix {
+	position: fixed;
+}
+
+.scrollablecss {
+	position: inherit;
+	height: 450px;
+	overflow: auto;
+	width: 95%;
+}
+.thumbnail{
+	height: 175px;
+	width: 175px;
+	border-radius: 7px;
+}
+
+.thumbnailtextcolor {
+	color: #4169E1;
+}
+
+.leftcss {
+	float:left;
+}
+.create{
+	position: absolute;
+	top: 70px;
+	right: 5px;
+}
+.thumbnailsetting{
+	width: 175px;
+	height: 200px;
+	overflow: hidden;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+</style>
+</head>
+<body>
+	<div ng-init="loginApp" ng-controller="loginController">
+		<div class="partition positionfix">
+			<div>
+				<h3>
+					<b>Content List:</b>
+				</h3>
+			</div>
+			<div class="container">
+				<div class="row scrollablecss ">
+					<div class="col-xs-500 leftcss" ng-repeat="tableData in tablesData">
+						<div popovercss data-toggle="popover" class="thumbnailsetting"
+							data-placement="right" data-trigger="hover" data-html="true"
+							data-content="Source: {{tableData.source}}">
+							<a href class="thumbnail thumbnailtextcolor"
+								ng-click="openEditMode(tableData,$index,selectedModule,'html/alertcount.html')">
+								</br>
+							<center>{{tableData.source}}</center>
+							</a>
+
+						</div>
+
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class="create positionfix">
+			<button ng-click="uploadContent('uploadcontent.html')"
+				class="btn btn-primary">Upload Content</button>
+			<button ng-click="writeContent('writecontent.html')"
+				class="btn btn-primary">Write Content</button>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

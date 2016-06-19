@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eduhub</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap.min.css">
+<script src="jquery-1.8.3.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="angular.min.js"></script>
+<script src="ui-bootstrap-tpls-0.13.0.min.js"></script>
+<script src="controller.js"></script>
+<style>
+.panel-default > .panel-heading {
+  background-color: #78909c;
+  color:black;
+}
+.thumbnailsetting{
+	width: 175px;
+	height: 200px;
+	overflow: hidden;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.thumbnail{
+	height: 175px;
+	width: 175px;
+	border-radius: 7px;
+}
+
+.thumbnailtextcolor {
+	color: #4169E1;
+}
+
+</style>
+</head>
+<body ng-app="loginApp" ng-controller="loginController">
+
+	<!-- header -->
+	<div
+		style="height: 70px; background-color: #404040; color: white !important; text-align: right; padding-right: 40px; padding-top: 20px">
+
+		<!-- Trigger the modal with a button -->
+		<button type="button" class="btn btn-default btn-md" id="loginBtn"
+			ng-click="openModuleTemplate('Signup.html')">Login/SignUp</button>
+	</div>
+	<!-- body -->
+	<div>
+		<!-- Panel for topics -->
+		<div class="container" style="padding-top: 2em">
+			<div class="panel panel-default">
+				<div class="panel-heading">Trending Topics</div>
+				<div class="panel-body">
+					<div class = "row">
+   
+					<div class="col-xs-500" ng-repeat="tableData in tablesData">
+					<div popovercss data-toggle="popover" class="thumbnailsetting"
+						data-placement="right" data-trigger="hover" data-html="true"
+						data-content="Source: {{tableData.source}}">
+							<a href
+							class="thumbnail thumbnailtextcolor"
+							ng-click="openEditMode(tableData,$index,selectedModule,'html/alertcount.html')"
+							> </br><center>{{tableData.source}}</center>
+						</a>
+						
+					</div>
+				</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Trending Institutes</div>
+				<div class="panel-body">Panel Content</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Trending Questions</div>
+				<div class="panel-body">Panel Content</div>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<!--<div
+		style="height: 200px; background-color: #404040; color: white !important; padding-right: 40px; padding-top: 20px"></div>-->
+
+</body>
+</html>
